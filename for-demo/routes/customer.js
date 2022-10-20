@@ -10,6 +10,16 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/view', (req, res) => {
+    CustomerModel.find((err, data) => {
+        if (!err) {
+            //res.send(data)
+            //render ra trang index ở thư mục views/student
+            res.render('customer/view', { customer: data })
+        }
+    })
+})
+
 router.get('/delete/:id', (req, res) => {
     CustomerModel.findByIdAndDelete(req.params.id, (err) => {
         if (err) {
